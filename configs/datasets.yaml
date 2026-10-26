@@ -1,0 +1,52 @@
+# Corpus configuration (§4, Table 2).
+#
+# D1 and D2 resolve to public HuggingFace datasets.  The paper's citations
+# for LLM-7 and HumLLM are both marked "Author-check required" (canonical
+# URL/DOI pending), so their identifiers are left blank: fill them in to
+# run `--provider hf` on all four tasks, or use `--provider synthetic`.
+
+tasks:
+  D1:
+    name: sentiment
+    source: SST-2
+    capped_n: 7666
+    n_classes: 2
+    hf: {dataset: glue, config: sst2, text_col: sentence, label_col: label}
+    notes: >
+      Standard GLUE training split (67,349); official validation set (872)
+      used as the test set; stratified 10% of train held out internally.
+  D2:
+    name: retrieval
+    source: HotPotQA
+    capped_n: 2000
+    n_classes: 2
+    hf: {dataset: hotpot_qa, config: distractor, split: validation}
+    input_template: "[Q] {question} [CTX] {context_300_words}"
+    label_map: {easy: 0, medium: 1, hard: 1}
+  D3:
+    name: generation
+    source: LLM-7
+    capped_n: 3164
+    n_classes: 2
+    source_skew: 11.8
+    hf: {dataset: "", text_col: text, label_col: label}
+    notes: 14877 essays under seven prompt conditions. Author-check required.
+  D4:
+    name: authorship
+    source: HumLLM
+    capped_n: 5000
+    n_classes: 2
+    source_skew: 9.3
+    balanced_cap: true
+    hf: {dataset: "", text_col: text, label_col: label}
+    notes: >
+      788,922-text corpus at 9.3:1 skew; 5,000 balanced examples sampled.
+      Normalisation statistics are fitted on the full (skewed) pool.
+      Author-check required.
+
+splits: {train: 0.70, val: 0.15, test: 0.15, stratified: true}
+preprocessing: {label_reindexing: true, pretokenize: true, chunk_size: 2048}
+
+multilingual:          # Appendix J
+  french: {dataset: allocine, model: xlm-roberta-base, cap: 5000}
+  german: {dataset: "", model: xlm-roberta-base, cap: 5000}

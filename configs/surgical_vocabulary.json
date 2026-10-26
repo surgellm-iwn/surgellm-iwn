@@ -1,0 +1,123 @@
+{
+  "name": "curated",
+  "source": "paper Appendix D",
+  "n_groups": 10,
+  "surface_features": [
+    "word_count",
+    "mean_word_length",
+    "sentence_count",
+    "question_marks",
+    "exclamation_marks",
+    "has_digit"
+  ],
+  "groups": {
+    "sst_pos": [
+      "great",
+      "excellent",
+      "brilliant",
+      "terrific",
+      "wonderful",
+      "masterpiece",
+      "captivat*",
+      "impressive",
+      "delightful",
+      "superb"
+    ],
+    "sst_neg": [
+      "terrible",
+      "awful",
+      "dreadful",
+      "unwatchable",
+      "boring",
+      "dull",
+      "mediocre",
+      "disappoint*",
+      "worst",
+      "painful"
+    ],
+    "llm_stat": [
+      "empirically",
+      "statistically",
+      "demonstrated",
+      "observed",
+      "evidenced",
+      "indicate*",
+      "suggest*",
+      "results show",
+      "data show"
+    ],
+    "llm_formal": [
+      "moreover",
+      "furthermore",
+      "additionally",
+      "consequently",
+      "therefore",
+      "in conclusion",
+      "in summary",
+      "to summarize"
+    ],
+    "llm_list": [
+      "firstly",
+      "secondly",
+      "thirdly",
+      "finally",
+      "in addition",
+      "on the other hand",
+      "(1)",
+      "(2)",
+      "(3)"
+    ],
+    "human_pers": [
+      "i",
+      "my",
+      "we",
+      "our",
+      "personally",
+      "i think",
+      "i believe",
+      "i feel"
+    ],
+    "human_hedge": [
+      "maybe",
+      "perhaps",
+      "possibly",
+      "kind of",
+      "sort of",
+      "i guess",
+      "probably",
+      "somewhat",
+      "arguably"
+    ],
+    "human_emo": [
+      "love",
+      "hate",
+      "amazing",
+      "awesome",
+      "terrible",
+      "awful",
+      "fantastic",
+      "horrible",
+      "sad",
+      "happy"
+    ],
+    "retrieval": [
+      "according to",
+      "as stated in",
+      "the article reports",
+      "the text states",
+      "multi-hop",
+      "supporting context",
+      "in the passage"
+    ],
+    "prompt_cot": [
+      "step by step",
+      "let us think",
+      "first",
+      "then",
+      "next",
+      "reasoning",
+      "the chain of thought",
+      "walk through"
+    ]
+  }
+}

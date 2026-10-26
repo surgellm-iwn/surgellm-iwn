@@ -1,0 +1,24 @@
+# Table 1: model variants.  P = surgical prefix, G = gate,
+# E = extended training, I = IWN.
+variants:
+  baseline:      {prefix: false, gate: false, extended: false, iwn: false}
+  t5:            {prefix: false, gate: false, extended: true,  iwn: false,
+                  note: "text-to-text reference; P/G/E/I are N/A in the paper"}
+  surgellm-g:    {prefix: true,  gate: false, extended: false, iwn: false}
+  surgellm-s:    {prefix: true,  gate: true,  extended: false, iwn: false}
+  surgellm-full: {prefix: true,  gate: true,  extended: true,  iwn: false}
+  surgellm-iwn:  {prefix: true,  gate: true,  extended: true,  iwn: true}
+
+# Table 3: the eleven rows of the main comparison.
+main_table_models:
+  - {display: T5-base,               variant: t5,            backbone: t5}
+  - {display: Baseline-DistilBERT,   variant: baseline,      backbone: distilbert}
+  - {display: Baseline-BERT,         variant: baseline,      backbone: bert}
+  - {display: Baseline-RoBERTa,      variant: baseline,      backbone: roberta}
+  - {display: SURGeLLM-S-DistilBERT, variant: surgellm-s,    backbone: distilbert}
+  - {display: SURGeLLM-S-BERT,       variant: surgellm-s,    backbone: bert}
+  - {display: SURGeLLM-G-RoBERTa,    variant: surgellm-g,    backbone: roberta}
+  - {display: SURGeLLM-FULL-RoBERTa, variant: surgellm-full, backbone: roberta}
+  - {display: SURGeLLM-FULL-ALBERT,  variant: surgellm-full, backbone: albert}
+  - {display: SURGeLLM-IWN-RoBERTa,  variant: surgellm-iwn,  backbone: roberta}
+  - {display: SURGeLLM-IWN-BERT,     variant: surgellm-iwn,  backbone: bert}

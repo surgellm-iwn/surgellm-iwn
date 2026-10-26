@@ -1,0 +1,21 @@
+# Table 13: full hyperparameter configuration.
+# LR = learning rate, EP = max epochs, BS = per-GPU batch size,
+# GA = gradient accumulation, MaxL = max sequence length, WU = warmup fraction.
+baseline-distilbert:   {lr: 2.0e-5, ep: 3, bs: 32, ga: 1, maxl: 96,  wu: 0.06}
+baseline-bert:         {lr: 2.0e-5, ep: 3, bs: 16, ga: 2, maxl: 128, wu: 0.06}
+baseline-roberta:      {lr: 2.0e-5, ep: 3, bs: 16, ga: 2, maxl: 128, wu: 0.06}
+t5-t5:                 {lr: 3.0e-4, ep: 5, bs: 8,  ga: 4, maxl: 128, wu: 0.06}
+surgellm-s-distilbert: {lr: 2.0e-5, ep: 4, bs: 32, ga: 1, maxl: 96,  wu: 0.06}
+surgellm-s-bert:       {lr: 2.0e-5, ep: 4, bs: 16, ga: 2, maxl: 128, wu: 0.06}
+surgellm-g-roberta:    {lr: 1.5e-5, ep: 4, bs: 16, ga: 2, maxl: 128, wu: 0.06}
+surgellm-full-roberta: {lr: 1.5e-5, ep: 5, bs: 16, ga: 2, maxl: 128, wu: 0.06}
+surgellm-full-albert:  {lr: 2.0e-5, ep: 5, bs: 32, ga: 1, maxl: 96,  wu: 0.06}
+surgellm-iwn-roberta:  {lr: 1.5e-5, ep: 5, bs: 16, ga: 2, maxl: 128, wu: 0.06}
+surgellm-iwn-bert:     {lr: 2.0e-5, ep: 5, bs: 16, ga: 2, maxl: 128, wu: 0.06}
+
+hardware:
+  gpus: 2
+  gpu_type: NVIDIA T4 (16 GB)
+  precision: FP16 via Accelerate
+  effective_batch_size: 32
+  estimated_total_compute_gpu_hours: 38

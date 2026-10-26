@@ -1,0 +1,54 @@
+# SURGeLLM base configuration.
+# Paper: TrustNLP 2026, pp. 600-617.
+
+run:
+  mode: demo            # demo = offline tiny backbones + surrogate corpora
+                        # paper = HuggingFace encoders + the real corpora
+  seeds: [0, 1, 2]      # Appendix I: all results from seeds {0,1,2}
+  device: cpu
+  scale: 0.20           # fraction of each corpus used in demo mode
+  provider: synthetic   # synthetic | hf
+
+model:
+  variant: surgellm-iwn # baseline | t5 | surgellm-g | surgellm-s
+                        # | surgellm-full | surgellm-iwn
+  backbone: roberta     # distilbert | bert | roberta | albert | t5 | xlmr
+  alpha: 0.1            # Eq. (3) task-embedding mixing coefficient
+  feature_dim: 16       # s in R^16
+  dropout_fc1: 0.1      # §3.7
+  dropout_fc2: 0.05
+
+features:
+  vocabulary: curated   # curated | random | auto
+  use_lexical_groups: true
+  use_surface_features: true
+  n_groups: 10          # Table 8 sweeps {0, 5, 10, 15, 20}
+
+normalization:
+  mode: iwn             # standard (Eq. 8) | iwn (Eq. 11)
+  eps: 1.0e-6
+  fit_on_full_pool: true  # §4: normalisation uses the full training data
+
+optim:                  # Table 13 defaults for the IWN variants
+  learning_rate: 1.5e-5
+  max_epochs: 5
+  batch_size: 16
+  grad_accumulation: 2
+  max_length: 128
+  warmup_fraction: 0.06
+  weight_decay: 0.01
+  adam_betas: [0.9, 0.999]
+  adam_eps: 1.0e-8
+  max_grad_norm: 1.0
+  patience: 2           # Algorithm 1, P = 2
+
+evaluation:
+  metrics: [accuracy, macro_f1, precision, recall, roc_auc]
+  bootstrap_B: 2000
+  fdr_q: 0.05
+  significance_test: welch
+
+paths:
+  results: results
+  checkpoints: checkpoints
+  cache: .cache
